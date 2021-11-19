@@ -13,13 +13,17 @@ function App() {
     low: '',
     icon: '',
     isRaining: '',
+    feels_like: '',
   }
   ])
 
   useEffect(()=>{
     try{
       console.log("The component was updated");
-      if(weather.weather.includes("rain")){
+      if(!weather.cityName){
+        getCityWeather("Vancouver");
+      }
+      if(weather.weather && weather.weather.includes("rain")){
         setWeather({isRaining: "Rain rain go away"})
       }
     }
@@ -32,22 +36,43 @@ function App() {
   const searchCity = (event) => {
     event.preventDefault()
     const city = document.querySelector('#city').value
+    
     getCityWeather(city)
   }
 
   const getCityWeather = (city) => {
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${process.env.REACT_APP_WEATHER_API}`
+    
 
-    axios(url).then((response) => {
-      setWeather({
-        temp: response.data.main.temp,
-        weather: response.data.weather[0].description,
-        high: response.data.main.temp_max,
-        low: response.data.main.temp_min,
-        cityName: response.data.name,
-        icon: response.data.weather[0].icon
-      })
-    })
+    fetch(url).then(res=>res.json()).then(
+      (response)=>{
+        console.log(response);
+        setWeather({
+          temp: response.main.temp,
+          weather: response.weather[0].description,
+          high: response.main.temp_max,
+          low: response.main.temp_min,
+          cityName: response.name,
+          icon: response.weather[0].icon,
+          feels_like:response.main.feels_like,
+          country:response.sys.country
+        })
+      }
+    )
+    
+    // axios(url).then((response) => {
+    //   console.log(response);
+    //   setWeather({
+    //     temp: response.data.main.temp,
+    //     weather: response.data.weather[0].description,
+    //     high: response.data.main.temp_max,
+    //     low: response.data.main.temp_min,
+    //     cityName: response.data.name,
+    //     icon: response.data.weather[0].icon,
+    //     feels_like:response.data.main.feels_like,
+    //     country:response.data.sys.country
+    //   })
+    // })
   }
 
   return (
@@ -59,7 +84,7 @@ function App() {
             type='text'
             name='city'
             id='city'
-            placeholder='Enter a City Name'
+            placeholder='Search City'
           />
         </form>
       </div>
