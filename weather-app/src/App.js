@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import "./App.css"
 import WeatherDetails from './components/WeatherDetails'
 import Popup from './components/Popup'
+import Footer from './components/Footer'
 
 function App() {
   const [weather, setWeather] = useState([{
@@ -99,6 +100,8 @@ function App() {
       {showPopup && (
         <Popup handlePopup={handlePopup} errMsg={showErrMsg}  />
       )}
+
+      <Footer />
     </div>
   )
 }
