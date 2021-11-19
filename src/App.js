@@ -50,7 +50,7 @@ function App() {
   }
 
   const getCityWeather = (city) => {
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${REACT_APP_WEATHER_API}`
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${process.env.REACT_APP_WEATHER_API}`
     // const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=/.netlify/functions/todo`
 
 
