@@ -1,7 +1,8 @@
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 
-import WeatherDetails from './WeatherDetails'
+// import WeatherDetails from './WeatherDetails'
+import WeatherDetails from './components/WeatherDetails'
 
 function App() {
   const [weather, setWeather] = useState([{
@@ -14,6 +15,19 @@ function App() {
     isRaining: '',
   }
   ])
+
+  useEffect(()=>{
+    try{
+      console.log("The component was updated");
+      if(weather.weather.includes("rain")){
+        setWeather({isRaining: "Rain rain go away"})
+      }
+    }
+    catch(error){
+      console.log(error);
+    }
+
+  }, [weather])
 
   const searchCity = (event) => {
     event.preventDefault()
@@ -36,20 +50,6 @@ function App() {
     })
   }
 
-  useEffect(()=>{
-    try{
-      console.log("The component was updated");
-      if(weather.weather.includes("rain")){
-        setWeather({isRaining: "Rain rain go away"})
-      }
-    }
-    catch(error){
-      console.log(error);
-    }
-
-  }, [weather.weather])
-
-
   return (
     <div className='App'>
       <h1>Weather App</h1>
@@ -68,12 +68,7 @@ function App() {
 
       <hr />
       {weather.cityName && (<WeatherDetails
-        cityName={weather.cityName}
-        temp={weather.temp}
-        high={weather.high}
-        low={weather.low}
-        weather={weather.weather}
-        icon={weather.icon}
+        object={weather}
       />)}
     </div>
   )
