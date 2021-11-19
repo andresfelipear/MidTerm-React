@@ -38,6 +38,7 @@ function App() {
 
   const handlePopup = ()=>{
     setShowPopUp(false);
+    document.getElementById('city').value=null;
   }
 
   const searchCity = (event) => {
@@ -63,12 +64,13 @@ function App() {
           feels_like: response.main.feels_like,
           country: response.sys.country
         })
+        document.getElementById('city').value=null;
       }
     ).catch(
       err => {
         console.log(err);
         setShowPopUp(true);
-        setErrMsg(`The city ${city} doesn't exits!! Try Again`);
+        setErrMsg(`The city ${city} that are you looking for not exists or have been writted wrong,  Try Again.`);
       }
     );
   }

@@ -4,6 +4,8 @@ html,
 body {
   margin: 0;
   padding: 0;
+  height: 100vh;
+  
 }
 
 .App {
@@ -14,9 +16,10 @@ body {
 body {
   background-color: #101012;
   color: white;
-  font: normal 1em/1.45em "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Fredoka One", cursive;
   padding: 50px;
   margin: 0 auto;
+  letter-spacing: 1px;
 }
 
 h1 {

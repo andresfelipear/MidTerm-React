@@ -1,4 +1,8 @@
 /* Temperature - Display */
+
+div{
+  
+}
 div .title-temp{
     font-size: 36px;
     align-items: center;
@@ -14,8 +18,9 @@ div .title-temp{
 
   div .feels-like{
       font-size: 14px;
-      font-weight: bold;
+      font-weight: 300;
       text-transform: capitalize;
+      letter-spacing: 1px;
   }
 
   div p .high-temp{
