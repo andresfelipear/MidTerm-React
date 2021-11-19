@@ -1,7 +1,6 @@
 import axios from 'axios'
 import { useState, useEffect } from 'react'
-
-// import WeatherDetails from './WeatherDetails'
+import "./App.css"
 import WeatherDetails from './components/WeatherDetails'
 
 function App() {
@@ -59,20 +58,6 @@ function App() {
         })
       }
     )
-    
-    // axios(url).then((response) => {
-    //   console.log(response);
-    //   setWeather({
-    //     temp: response.data.main.temp,
-    //     weather: response.data.weather[0].description,
-    //     high: response.data.main.temp_max,
-    //     low: response.data.main.temp_min,
-    //     cityName: response.data.name,
-    //     icon: response.data.weather[0].icon,
-    //     feels_like:response.data.main.feels_like,
-    //     country:response.data.sys.country
-    //   })
-    // })
   }
 
   return (
